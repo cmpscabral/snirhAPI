@@ -7,9 +7,9 @@ Transformation of [SNIRH](https://snirh.apambiente.pt/) platform data into an ac
 
 
 ## Motivation
-- The user interface is pretty old and there's no easy access to the data.
-- The main motivation is to access the data in a easy and standard format, through a REST API.
-- On top of this API, a frontend modern application can be built.
+- The user interface is pretty old and hard to get multiple station's data.
+- Provide access the data in a easy and standard format, through a REST API.
+- On top of this API, a frontend modern application can be easily built.
 
 ## Development
 
@@ -34,7 +34,6 @@ This project consists of 2 main blocks:
 
 ### to run the crawler
 the crawler is located inside [src/client](src/client).
-
 
 # TODO
 - Improve Swagger OpenAPI docs
