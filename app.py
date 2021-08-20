@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from flask import Flask, session, abort, request
+from flask import Flask, abort, request
 from flask_restplus import fields, Api, Resource
 from flask_session import Session
 
@@ -11,24 +11,34 @@ from src.client.parameters import Parameters
 from src.client.networks import Networks
 from src.client.data import GetData
 from src.serializers import DataQuerySchema
-
+import os
 
 app = Flask(__name__)
 api = Api(app)
 
 app.secret_key = "BAD_SECRET_KEY"
 
-app.config["SESSION_TYPE"] = "redis"
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_USE_SIGNER"] = True
-app.config["SESSION_REDIS"] = redis.from_url("redis://localhost:6379")
-server_session = Session(app)
+from dotenv import load_dotenv
+
+load_dotenv()
+WITH_REDIS_SESSION = os.environ.get("WITH_REDIS_SESSION")
+if WITH_REDIS_SESSION:
+    from flask import session
+
+    app.config["SESSION_TYPE"] = "redis"
+    app.config["SESSION_PERMANENT"] = False
+    app.config["SESSION_USE_SIGNER"] = True
+    app.config["SESSION_REDIS"] = redis.from_url("redis://localhost:6379")
+    server_session = Session(app)
+
+    @app.before_request
+    def make_session_permanent():
+        session.permanent = True
+        app.permanent_session_lifetime = timedelta(minutes=30)
 
 
-@app.before_request
-def make_session_permanent():
-    session.permanent = True
-    app.permanent_session_lifetime = timedelta(minutes=30)
+else:
+    session = {}
 
 
 data_schema = DataQuerySchema()
