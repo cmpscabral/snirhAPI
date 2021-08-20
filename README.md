@@ -15,7 +15,7 @@ Transformation of [SNIRH](https://snirh.apambiente.pt/) platform data into an ac
 
 This project consists of 2 main blocks:
 - [**Crawler**](src/client) - fetches the data and transforms it into standart python formats.
-- [**App**](#) - displays the data fetched in the crawler and creates RESTFull API for easy access.
+- [**App**](#) - usess the fetched data and creates a RESTFull API interface for easy access.
 
 
 ### to setup in your local machine:
