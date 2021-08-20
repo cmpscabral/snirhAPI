@@ -1,4 +1,4 @@
-from client.base import BaseCrawler
+from src.client.base import BaseCrawler
 from bs4 import BeautifulSoup
 
 # from client.exceptions import NetworkSelectionError

@@ -6,10 +6,10 @@ from flask_session import Session
 
 import redis
 
-from client.stations import Stations
-from client.parameters import Parameters
-from client.networks import Networks
-from client.data import GetData
+from src.client.stations import Stations
+from src.client.parameters import Parameters
+from src.client.networks import Networks
+from src.client.data import GetData
 from src.serializers import DataQuerySchema
 
 
