@@ -2,7 +2,7 @@ from app import ns, api, session
 
 from flask import abort, request
 from flask_restplus import Resource
-from app.client import *
+from app.crawler import *
 from app.models import *
 from app.serializers import DataQuerySchema
 

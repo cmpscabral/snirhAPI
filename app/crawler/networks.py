@@ -1,4 +1,4 @@
-from app.client.base import BaseCrawler
+from app.crawler.base import BaseCrawler
 from bs4 import BeautifulSoup
 
 
