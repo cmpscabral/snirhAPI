@@ -2,6 +2,8 @@
 
 Transformation of [SNIRH](https://snirh.apambiente.pt/) platform data into an accessible RESTFull API.
 
+running at https://snirhapi.herokuapp.com/
+
 ## What is SNIRH?
 [SNIRH](https://snirh.apambiente.pt/) (Sistema Nacional de Informação de Recursos Hídricos - National Information System for Water Resources) is a website built in the mid90s that gives access to all sorts of water resources data accross Portugal. It had little to no updates in the last 30 years.
 
