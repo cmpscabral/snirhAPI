@@ -11,15 +11,15 @@ running at https://snirhapi.herokuapp.com/
 ## Motivation
 
 - The user interface is pretty old and hard to get multiple station's data.
-- Provide access the data in a easy and standard format, through a REST API.
+- Provide access to the data in an easy and standard format, through a REST API.
 - On top of this API, a frontend modern application can be easily built.
 
 ## Development
 
 This project consists of 2 main blocks:
 
-- [**Crawler**](src/client) - fetches the data and transforms it into standart python formats.
-- [**App**](#) - usess the fetched data and creates a RESTFull API interface for easy access.
+- [**Crawler**](app/crawler) - fetches the data and transforms it into standart python formats.
+- [**App**](app) - uses the fetched data and creates a RESTFull API interface for easy access.
 
 ### to setup in your local machine:
 
@@ -39,4 +39,4 @@ This project consists of 2 main blocks:
 
 ### to run the crawler
 
-the crawler is located inside [src/client](src/client).
+the crawler is located inside [app/crawler](app/crawler).
