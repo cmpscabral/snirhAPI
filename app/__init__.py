@@ -15,7 +15,7 @@ api = Api(
     app,
     version="1.0",
     title="SNIRH API",
-    description="An API to fetch hidrological data from SNIRH",
+    description="An API to fetch hidrological data from <a href='https://snirh.apambiente.pt/'>SNIRH</a>. Check the source code <a href='https://github.com/franciscobmacedo/snirhapi'>here</a>",
 )
 
 ns = api.namespace("api", description="SNIRH API operations")
