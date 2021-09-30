@@ -1,7 +1,5 @@
-from src.client.base import BaseCrawler
+from app.client.base import BaseCrawler
 from bs4 import BeautifulSoup
-
-# from client.exceptions import NetworkSelectionError
 
 
 class Parameters(BaseCrawler):
@@ -16,9 +14,3 @@ class Parameters(BaseCrawler):
             {"id": o["value"], "name": o.text.replace("■", "").strip()}
             for o in soup.find_all("option")
         ]
-
-
-if __name__ == "__main__":
-    bot = Parameters()
-    bot.select_network(920123704)
-    bot.get_parameters(920685726)

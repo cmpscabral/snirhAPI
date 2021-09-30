@@ -1,7 +1,5 @@
-from src.client.base import BaseCrawler
+from app.client.base import BaseCrawler
 from bs4 import BeautifulSoup
-
-# from client.exceptions import NetworkSelectionError
 
 
 class Stations(BaseCrawler):
@@ -33,7 +31,6 @@ class Stations(BaseCrawler):
         return data
 
     def get(self):
-        print("get stations")
         ids = self.get_stations_ids()
         stations = self.get_stations_details()
         for station in stations[:]:

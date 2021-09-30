@@ -27,11 +27,9 @@ class BaseCrawler:
             self.select_network()
 
     def start_session(self):
-        print("starting new session")
         self.session = requests.Session()
         self.session.get(self.home_url)
 
     def select_network(self):
-        print("New Network", self.network)
         data = {"f_redes_seleccao[]": self.network, "aplicar_filtro": 1}
         self.session.post(self.home_url, data=data)
