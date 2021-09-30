@@ -2,11 +2,7 @@ from app import ns, api, session
 
 from flask import abort, request
 from flask_restplus import Resource
-
-from app.client.stations import Stations
-from app.client.parameters import Parameters
-from app.client.networks import Networks
-from app.client.data import GetData
+from app.client import *
 from app.models import *
 from app.serializers import DataQuerySchema
 
