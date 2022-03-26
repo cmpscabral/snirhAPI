@@ -1,5 +1,5 @@
-from app import app
-from app.views import *
+import uvicorn
 
 if __name__ == "__main__":
-    app.run()
+    uvicorn.run("src.app:app", reload=True, debug=True, host="0.0.0.0", port=5001)
+ 
