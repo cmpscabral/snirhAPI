@@ -1,9 +1,10 @@
 from typing import List
 
 from bs4 import BeautifulSoup
-from src.crawler.base import BaseCrawler
-from src.models import Network
 
+from crawler.base import BaseCrawler
+from models import Network
+import json
 
 class Networks(BaseCrawler):
     def __init__(self, *args, **kwargs):

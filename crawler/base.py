@@ -4,7 +4,7 @@ import requests
 
 
 class BaseCrawler:
-    BASE_URL = "https://snirh.apambiente.pt/"
+    BASE_URL = "https://snirh.apambiente.pt"
 
     def __init__(
         self,
@@ -14,17 +14,17 @@ class BaseCrawler:
         *args,
         **kwargs,
     ):
-        self.home_url = f"{self.BASE_URL}index.php?idMain=2&idItem=1"
+        self.home_url = f"{self.BASE_URL}/index.php?idMain=2&idItem=1"
         self.stations_url = (
-            f"{self.BASE_URL}snirh/_dadosbase/site/xml/xml_listaestacoes.php"
+            f"{self.BASE_URL}/snirh/_dadosbase/site/xml/xml_listaestacoes.php"
         )
         self.stations_details_url = (
-            f"{self.BASE_URL}snirh/_dadosbase/site/janela.php?obj_janela=INFO_ESTACOES"
+            f"{self.BASE_URL}/snirh/_dadosbase/site/janela.php?obj_janela=INFO_ESTACOES"
         )
         self.parameters_url = (
-            f"{self.BASE_URL}snirh/_dadosbase/site/_ajax_listaparscomdados.php"
+            f"{self.BASE_URL}/snirh/_dadosbase/site/_ajax_listaparscomdados.php"
         )
-        self.data_url = f"{self.BASE_URL}snirh/_dadosbase/site/janela_verdados.php"
+        self.data_url = f"{self.BASE_URL}/snirh/_dadosbase/site/janela_verdados.php"
 
         if session:
             self.session = session

@@ -2,9 +2,10 @@ from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel, validator
+import datetime
 
 
-class StateEnum(Enum):
+class StationState:
     ativa = "ATIVA"
     extinta = "EXTINTA"
     desativada = "DESATIVADA"
@@ -53,7 +54,7 @@ class Station(BaseModel):
     encerramento_convencional: Optional[str]
     encerramento_automatica: Optional[str]
     telemetria: bool
-    estado: Optional[StateEnum]
+    estado: Optional[str]
     indice_qualidade: Optional[str]
 
     @validator(
@@ -81,9 +82,13 @@ class Parameter(BaseModel):
 
 
 class DataEntry(BaseModel):
-    timestamp: str
+    timestamp: datetime.datetime
     value: float
 
     @validator("value")
     def validate_value(cls, value: str) -> float:
         return float(value)
+
+
+class DataEntryList(BaseModel):
+    __root__: list[DataEntry]

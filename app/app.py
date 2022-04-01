@@ -6,13 +6,28 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
-from src.crawler.data import GetData
-from src.crawler.networks import Networks
-from src.crawler.parameters import Parameters
-from src.crawler.stations import Stations
-from src.models import DataEntry, Network, Parameter, Station
+from crawler.data import GetData
+from crawler.networks import Networks
+from crawler.parameters import Parameters
+from crawler.stations import Stations
+from models import DataEntryList, Network, Parameter, Station
 
-app = FastAPI()
+from utils import parse_datetime
+
+
+description = """
+💧💧💧 access [SNIRH](https://snirh.apambiente.pt/) data  
+
+
+[source code](https://github.com/franciscobmacedo/snirhAPI)
+
+"""
+
+app = FastAPI(
+    title="snirhAPI",
+    description=description,
+    version="0.0.1",
+)
 
 origins = ["*"]
 
@@ -67,7 +82,6 @@ async def network(network_id: str):
 
 @app.get("/networks/{network_id}/stations/", response_model=List[Station])
 async def stations(network_id: str):
-    print(network_id)
     if network_id == cache.network_id:
         if cache.stations:
             return cache.stations
@@ -84,7 +98,6 @@ async def stations(network_id: str):
 
 @app.get("/networks/{network_id}/stations/{station_id}", response_model=Station)
 async def station(network_id: str, station_id: str):
-    print(network_id)
     if network_id == cache.network_id:
         if cache.stations:
             station = [s for s in cache.stations if s.id == station_id]
@@ -119,11 +132,16 @@ async def params(network_id: str, station_id: str):
     return bot.get(station_id)
 
 
-@app.get("/data/")
+@app.get("/data/", response_model=DataEntryList)
 async def data(
-    station: str, parameter: str, tmin: str = "1980-01-01", tmax: str = "2020-12-31"
-) -> List[DataEntry]:
-    bot = GetData()
-    return bot.get_data(
-        station_id=station, parameter_id=parameter, tmin=tmin, tmax=tmax
+    station: str = "1627758916",
+    parameter: str = "1849",
+    tmin: str = "1980-01-01",
+    tmax: str = "2020-12-31",
+) -> DataEntryList:
+    return GetData().get_data(
+        station_id=station,
+        parameter_id=parameter,
+        tmin=parse_datetime(tmin, format="%Y-%m-%d"),
+        tmax=parse_datetime(tmax, format="%Y-%m-%d"),
     )

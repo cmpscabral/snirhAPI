@@ -1,9 +1,10 @@
 from typing import List
 
 from bs4 import BeautifulSoup
-from src.crawler.base import BaseCrawler
-from src.crawler.networks import Networks
-from src.models import Station
+
+from crawler.base import BaseCrawler
+from crawler.networks import Networks
+from models import Station
 
 
 class Stations(BaseCrawler):
@@ -49,7 +50,6 @@ class Stations(BaseCrawler):
         formatted_stations = []
         for station in stations[:]:
             try:
-                print(station)
                 formatted_stations.append(
                     Station(
                         id=ids[station["CÓDIGO"]],
@@ -104,7 +104,6 @@ def get_all_stations_states():
     networks = Networks().get()
     station_states = []
     for network in networks:
-        print(network)
         stations = Stations(network_id=network.id).get_stations_details()
         for station in stations:
             station_state = station.get("ESTADO", None)
