@@ -1,4 +1,3 @@
-from app.app import station
 from .networks import Networks
 from .stations import Stations
 from .parameters import Parameters
